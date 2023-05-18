@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,7 +49,7 @@ public class FaixaEtariaController {
     @GetMapping("/faixaetaria")
     public ResponseEntity<?> findAllFaixaEtaria(){
         try{
-            List<FaixaEtaria> listaFaixasEtarias =faixaEtariaRepository.findAll();
+            List<FaixaEtaria> listaFaixasEtarias = faixaEtariaRepository.findAll();
             return new ResponseEntity<>(listaFaixasEtarias, HttpStatus.OK);
         } catch (Exception e){
             e.printStackTrace();
@@ -91,14 +90,9 @@ public class FaixaEtariaController {
      * Delete metodo. Neste metodo pretendo deletar atraves do Id.
      * @PathVariable é a variavel que sserá passada para o metodo > {id} neste caso que sera de eletado.
      * */
-    @DeleteMapping("regiao/delete/{id}")
+    @DeleteMapping("faixaetaria/delete/{id}")
     public void deleteFaixaEtaria(@PathVariable long id){
         faixaEtariaRepository.deleteById(id);
     }
-
-
-
-
-
 
 }

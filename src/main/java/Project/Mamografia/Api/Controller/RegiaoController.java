@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,14 +44,14 @@ public class RegiaoController {
      * Obtem lista de todas regioes, quando acessa a url designada no metodo.
      * Return regions. findAll.
      */
-    @GetMapping("/regiao")
+    @GetMapping("/regioes")
     public ResponseEntity<?> findAllRegioes(){
         try{
             List<Regiao> getAllRegioes = regiaoRepository.findAll();
             System.out.println("Encontrado");
             if (getAllRegioes.isEmpty())
                 System.out.println("Vazio");
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(getAllRegioes, HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
@@ -61,12 +60,12 @@ public class RegiaoController {
     /**
      * Obtem as regioes atravez de {id}.
      * if (verifica se o id da regiao escolhida existe) e retorna Ok, se sim e Not_Found senao..
-     * */
+     */
     @GetMapping("/regiao/{id}")
-    public ResponseEntity<?> getRegiaoById(@PathVariable  long id) {
-        Optional regiaoEscolhidaOptional = regiaoRepository.findById(id);
+    public ResponseEntity<Regiao> findRegiaoById(@PathVariable long id) {
+        Optional<Regiao> regiaoEscolhidaOptional = regiaoRepository.findById(id);
         if (regiaoEscolhidaOptional.isPresent()) {
-            Object regiaoEscolhida = regiaoEscolhidaOptional.get();
+            Regiao regiaoEscolhida = regiaoEscolhidaOptional.get();
             return new ResponseEntity<>(regiaoEscolhida, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);

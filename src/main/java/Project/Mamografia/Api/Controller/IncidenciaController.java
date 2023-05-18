@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,7 +43,7 @@ public class IncidenciaController {
     public ResponseEntity<List<Incidencia>> findIncidencia(){
             List<Incidencia> listaIncidencias = incidenciaRepository.findAll();
             if (listaIncidencias.isEmpty())
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
             return new ResponseEntity<>(listaIncidencias, HttpStatus.OK);
     }
 
@@ -64,6 +63,7 @@ public class IncidenciaController {
             }
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
 
     /**
      * Post metodo para salvar.
