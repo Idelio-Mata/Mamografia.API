@@ -29,6 +29,7 @@ public class IncidenciaController {
     private final IncidenciaRepository incidenciaRepository;
 
     /**Construtor padrao da classe.   Recebe a instancia nomeClasse+repository da classe*/
+
     public IncidenciaController(IncidenciaRepository incidenciaRepository) {
         this.incidenciaRepository = incidenciaRepository;
     }
@@ -68,7 +69,6 @@ public class IncidenciaController {
     /**
      * Post metodo para salvar.
      * Ele recebe o objeto atraves de um Json dentro do @RequestBody
-     * @return
      */@PostMapping("/incidencia/novo")
     public Incidencia postIncidencia(@RequestBody Incidencia newIncidencia){
         return incidenciaRepository.save(newIncidencia);
